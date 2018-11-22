@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body style="background: #f4f4f4">
+<div id="header_wrak">
+    <header>
+        <ul class="head-ul">
+            <li><a href="#"><span>&#xe893;</span>微信登陆</a></li>
+            <li><a href="#"><span>&#xe62d;</span>QQ登陆</a></li>
+            <li><a href="../html/regist.html?id=denglu">登录</a></li>
+            <li><a href="../html/regist.html?id=regist">注册</a></li>
+            <li>
+                <a href="../html/regist.html?id=denglu"><span>&#xe622;</span>我的收藏</a>
+                <ul class="collect">
+                    <li><a href="../html/regist.html?id=denglu">收藏宝贝</a></li>
+                    <li><a href="../html/regist.html?id=denglu">收藏店铺</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><span>&#xe601;</span>我的购物车</a></li>
+            <li><a href="#"><span>&#xe612;</span>我的订单</a></li>
+            <li>
+                <a href="#">帮助中心<span>&#xe65a;</span></a>
+                <ul class="help">
+                    <li><a href="#">买家服务</a></li>
+                    <li><a href="#">商家服务</a></li>
+                    <li><a href="#">规则中心</a></li>
+                </ul>
+            </li>
+            <li><a href="#">商家后台</a></li>
+        </ul>
+    </header>
+</div>
+<div id="nav-shop">
+    <div class="nash-left">
+        <h1>
+            <a href="#"></a>
+        </h1>
+    </div>
+    <ul class="nash-right">
+        <li>
+            <span>1</span>
+            <span>购物车</span>
+        </li>
+        <li>
+            <span>2</span>
+            <span>确认订单</span>
+        </li>
+        <li>
+            <span>3</span>
+            <span>支付</span>
+        </li>
+        <li>
+            <span>4</span>
+            <span>完成</span>
+        </li>
+    </ul>
+</div>
+<div id="shoplist">
+    <ul class="shoplist-top">
+        <li><a class="blof" href="#">全部商品</a><span></span></li>
+        <li>|</li>
+        <li><a href="#">优惠</a></li>
+        <li>|</li>
+        <li><a href="#">库存紧张</a></li>
+    </ul>
+    <div class="shoplist-center">
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" class="quan" name="check">全选</th>
+                    <th>商品</th>
+                    <th>商品信息</th>
+                    <th>单价(元)</th>
+                    <th>数量</th>
+                    <th>小计(元)</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr>-->
+                    <!--<td><input type="checkbox"></td>-->
+                    <!--<td><a href="#"><img src="../img/00x100.jpg" alt=""><span>半身裙秋冬季2018新款chic港味韩版百搭修身高腰时尚显瘦针织裙鱼尾半身裙女</span></a></td>-->
+                    <!--<td>-->
+                        <!--<p>颜色: <span>咖啡色</span></p>-->
+                        <!--<p>尺码: <span>均码</span></p>-->
+                    <!--</td>-->
+                    <!--<td>79.90</td>-->
+                    <!--<td><a href="javascript:;">-</a><input type="text" value="1"><a href="javascript:;">+</a></td>-->
+                    <!--<td>合计</td>-->
+                    <!--<td>删除</td>-->
+                <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+    <div class="shoplist-bottom">
+        <div class="shlibo-left">
+            <input type="checkbox" class="quan" name="check">全选
+        </div>
+        <div class="shlibo-right">
+            <div class="shri1">共有<span></span>件商品,总计:</div>
+            <div class="shri2"><span></span></div>
+            <div class="shri3"><a href="#">去付款&gt;</a></div>
+        </div>
+    </div>
+</div>
+<div id="fooler">
+    <p>
+        Copyright ©2017 Meilishuo.com
+        <a href="#">电信与信息服务业务经营许可证100798号</a>
+        <a href="#">营业执照</a>
+    </p>
+    <p>
+        京ICP备11031139号  京公网安备110108006045   客服电话：400-8158-666  文明办网文明上网举报电话：010-82615762
+        <a href="#">违法不良信息举报中心</a>
+    </p>
+</div>
+</body>
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    // $.ajax({
+    //     url:"../json/listshop.json",
+    //     success:function(data){
+    //        console.log(data)
+    //     }
+    // });
+    $.getJSON("../json/listshop.json",function(data){
+        console.log(data);
+        $.each(data,function(index){
+            let str = `<tr>
+                            <td><input type="checkbox" class="danxuan" name="check"></td>
+                            <td><a href="#"><img src="${data[index].src}" alt=""><span>${data[index].introduce}</span></a></td>
+                            <td>
+                                <p>颜色: <span>${data[index].color}</span></p>
+                                <p>尺码: <span>${data[index].size}</span></p>
+                            </td>
+                            <td class="price">${data[index].price}</td>
+                            <td><a class="jia" type="-1" href="javascript:;">-</a><input type="text" name="num" value="${data[index].num}"><a class="jia" type="1" href="javascript:;">+</a></td>
+                            <td class="abc">${((data[index].price).split("¥")[1])*(data[index].num)}</td>
+                            <td><a class="details" href="javascript:;">删除</a><span id="time" style="display:none">${data[index].id}</span></td>
+                        </tr>`;
+            $("tbody").append(str);
+        });
+        let zong=null;
+
+        $(".jia").on("click",function (e) {
+            let num=$(this).parent().find("input");
+            let numjian = parseInt(num.val()) + $(this).attr("type")/1;
+            if(num.val()<1)return;
+            let obj1 = {};
+            let thistr=$(this).parent().parent();
+            obj1.typ = numjian;
+            obj1.id=thistr.find("#time").html();
+            e.preventDefault();
+            $.ajax({
+                type:"post",
+                url:"http://10.9.42.230:3004/select",
+                data:JSON.stringify(obj1),
+                success:function (res,status,xhr) {
+                    num.val(numjian);
+                    thistr.find(".abc").html((JSON.parse(res).msg.split("¥")[1])/1*numjian);
+                },
+                error:function (res) {
+                    alert(JSON.parse(res).msg);
+                }
+            })
+        });
+
+        $(".details").on("click",function(e){
+           let obj2=$(this).parent().find("#time").html();
+            e.preventDefault();
+            $.ajax({
+                type:"post",
+                url:"http://10.9.42.230:3004/details",
+                data:obj2,
+                success:function (res,status,xhr) {
+                    alert(JSON.parse(res).msg);
+                    location=location
+                },
+                error:function (res) {
+                    alert(JSON.parse(res).msg);
+                }
+            })
+        });
+
+
+
+
+        $("[name=check]:input").on("click",function(e){
+            if(this.checked){
+                // console.log($(this).parent().parent().find(".abc").html());
+                $(".shri2 span").html($(this).parent().parent().find(".abc").html())
+            }else{
+                $(".shri2 span").html("")
+            }
+        });
+
+
+
+
+        $.each($(".abc"),function(index){
+            return  zong +=($(this).html()/1)
+        });
+        $(".quan").on("click",function(e){
+            if(this.checked){
+                $("[name=check]:checkbox").prop("checked",true);
+                $(".shri2 span").html("¥"+zong)
+            }else{
+                $("[name=check]:checkbox").prop("checked",false);
+                $(".shri2 span").html("")
+            }
+        });
+    });
+    $(".shoplist-top li a").on("click",function(e){
+        $(this).addClass("blof").parent().siblings().find("a").removeClass("blof");
+    })
+</script>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div id="logo">
+        <h1>
+            <a href="#">
+                <img src="../img/logo.png" alt="">
+            </a>
+        </h1>
+    </div>
+    <div id="register">
+        <div class="register-left">
+
+        </div>
+        <div class="register  yincang">
+            <form action="">
+                <p><span>注册美丽说</span><a id="login" href="#">登录</a></p>
+                <p class="chang"><input type="text" id="phone" name="phone" value="手机号"><span>&#xe621;</span></p><em class="phone">请输入11位数手机号</em>
+                <p class="chang"><input type="text" id="uname" name="uname" value="昵称"><span>&#xe623;</span></p><em class="uname">请输入昵称</em>
+                <p class="chang"><input type="password" id="pwd" name="pwd"><span>&#xe646;</span></p><em class="pwd">请输入密码</em>
+                <p class="button"><a href="javascript:;">立即注册</a></p>
+                <p class="check">
+                    <input type="checkbox" checked><i>同意</i><a href="#">《美丽说注册条款》</a>
+                </p>
+                </form>
+            <div class="register-bottom">
+                <p>无需注册，即可登录</p>
+                <p>
+                    <a href="#"><span>&#xe62d;</span>QQ登录</a>
+                    <a href="#"><span>&#xe60e;</span>微博登录</a>
+                    <a href="#"><span>&#xe893;</span>微信登录</a>
+                </p>
+            </div>
+        </div>
+        <div class="denglu">
+            <form action="">
+                <p><span>登录美丽说</span><a id="gister" href="#">去注册</a></p>
+                <p><label for="tet">手机号：</label> <input type="text" id="tet" name="tet"></p>
+                <p><label for="mima">密码：</label> <input type="password" id="mima" name="nima"></p>
+                <p class="button login"><a href="javascript:;">立即登录</a></p>
+            </form>
+            <div class="register-bottom">
+                <p>
+                    <a href="#"><span>&#xe62d;</span>QQ登录</a>
+                    <a href="#"><span>&#xe60e;</span>微博登录</a>
+                    <a href="#"><span>&#xe893;</span>微信登录</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="last_wrak">
+        <div id="last">
+            <div class="last-1">
+                <p>买家帮助</p>
+                <ul class="last-ul">
+                    <li><a href="#">新手指南</a></li>
+                    <li><a href="#">服务保障</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">购物帮助</a></li>
+                </ul>
+            </div>
+            <div class="last-1">
+                <p>商家帮助</p>
+                <ul class="last-ul">
+                    <li><a href="#">商家入驻</a></li>
+                    <li><a href="#">商家后台</a></li>
+                    <li><a href="#">商家推广</a></li>
+                </ul>
+            </div>
+            <div class="last-1">
+                <p>关于我们</p>
+                <ul class="last-ul">
+                    <li><a href="#">关于美丽说</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="last-1">
+                <p>关注我们</p>
+                <ul class="last-ul">
+                    <li><a href="#"><span>&#xe60e;</span>新浪微博</a></li>
+                    <li><a href="#"><span>&#xe618;</span>QQ空间</a></li>
+                    <li><a href="#"><span>&#xe675;</span>腾讯微博</a></li>
+                </ul>
+            </div>
+            <div class="last-wx1 last-wx2">
+                <h4>美丽说微信服务号</h4>
+                <img src="../img/wx1.jpg" alt="">
+            </div>
+            <div class="last-wx1">
+                <h4>美丽说客户端下载</h4>
+                <img src="../img/wx2.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div id="fooler">
+        <p>
+            Copyright ©2017 Meilishuo.com
+            <a href="#">电信与信息服务业务经营许可证100798号</a>
+            <a href="#">营业执照</a>
+        </p>
+        <p>
+            京ICP备11031139号  京公网安备110108006045   客服电话：400-8158-666  文明办网文明上网举报电话：010-82615762
+            <a href="#">违法不良信息举报中心</a>
+        </p>
+    </div>
+</body>
+<script>
+    if(window.location.href.split("?")[1].split("=")[1]==="regist"){
+        $(".register").removeClass("yincang");
+        $(".denglu").addClass("yincang");
+    }else if(window.location.href.split("?")[1].split("=")[1]==="denglu"){
+        $(".denglu").removeClass("yincang");
+        $(".register").addClass("yincang");
+    }
+</script>
+<script>
+    let obj={};
+    let arr=[];
+    let str1 = /^\d{11}$/;
+    let str2 = /^(\w|[\u4e00-\u9fa5]){1,}$/;
+    let str3 = /^\w{6,18}$/;
+    $("#phone").on("focus",function(e){
+        if(!str1.test($(this).val())){
+            $(this).val("");
+        }
+    }).on("blur",function(e) {
+        if(str1.test($(this).val())) {
+            $(".phone").html("输入正确").css({
+                display: "block",
+                "color": "green"
+            })
+            obj.phone=$(this).val();
+            arr.push($(this).val());
+        }else if (!str1.test($(this).val())) {
+            $(".phone").html("请输入正确的手机号").css({
+                display: "block",
+                "color": "red"
+            });
+        }
+    });
+    $("#uname").on("focus",function(e){
+        if(!str2.test($(this).val())||$(this).val()==="昵称"){
+            $(this).val("");
+        }
+    }).on("blur",function(e){
+        if(str2.test($(this).val())) {
+            $(".uname").html("输入正确").css({
+                display: "block",
+                "color": "green"
+            })
+            obj.uname=$(this).val();
+            arr.push($(this).val());
+        }else if (!str2.test($(this).val())) {
+            $(".uname").html("昵称不能有特殊字符").css({
+                display: "block",
+                "color": "red"
+            });
+        }
+    });
+    $("#pwd").on("focus",function(e){
+        if(!str3.test($(this).val())){
+            $(this).val("");
+        }
+    }).on("blur",function(e){
+        if(str3.test($(this).val())) {
+            $(".pwd").html("输入正确").css({
+                display: "block",
+                "color": "green"
+            });
+            obj.pwd=$(this).val();
+            arr.push($(this).val());
+        }else if (!str3.test($(this).val())) {
+            $(".pwd").html("请输入6-18位").css({
+                display: "block",
+                "color": "red"
+            });
+        }
+    });
+
+    $(".button a").on("click",function(e){
+        if(arr.length ===3){
+            //console.log(obj);
+            e.preventDefault();
+            $.ajax({
+                type:"post",
+                url:"http://10.9.42.230:3004/regist",
+                data:JSON.stringify(obj),
+                success:function (res,status,xhr) {
+                    alert(JSON.parse(res).msg);
+                    if(JSON.parse(res).msg==="注册成功"){
+                        $(".register").addClass("yincang");
+                        $(".denglu").removeClass("yincang");
+                    }
+                },
+                error:function (res) {
+                    alert(JSON.parse(res).msg);
+                }
+            });
+            obj={};
+            arr=[];
+        }
+
+    });
+
+    $("#login").on("click",function(e){
+        $(".register").addClass("yincang");
+        $(".denglu").removeClass("yincang");
+    });
+    $("#gister").on("click",function(e){
+        $(".register").removeClass("yincang");
+        $(".denglu").addClass("yincang");
+    });
+
+
+    $(".login a").on("click",function(e){
+        var list = {};
+        list.phone =$("#tet").val();
+        list.pwd =$("#mima").val();
+        //console.log(list);
+        e.preventDefault();
+        $.ajax({
+            type:"post",
+            url:"http://10.9.42.230:3004/login",
+            data:JSON.stringify(list),
+            success:function (res,status,xhr) {
+                alert(JSON.parse(res).msg);
+                if(JSON.parse(res).msg==="登录成功"){
+                    location.href="../../index.html"
+                }
+            },
+            error:function (res) {
+                alert(JSON.parse(res).msg);
+            }
+        })
+    })
+</script>
+</html>

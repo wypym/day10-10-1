@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="name">
+<input type="text" id="pwd">
+<button id="btn">提交</button>
+</body>
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+    var obj = {};
+    $("#btn").on("click",function(e){
+        obj.name = $("#name").val();
+        obj.pwd = $("#pwd").val();
+        var arr = [];
+        if(localStorage.user){
+            arr = eval(localStorage.user);
+            var index = arr.findIndex(v=>v.name ===obj.name);
+            if(index>=0){
+                alert("账户已被注册");
+                $("#name").val("");
+                $("#pwd").val("");
+                return;
+            }
+        }
+        var user = {'name':$("#name").val(),'pwd':$("#pwd").val()};
+        arr.push(user);
+        localStorage.user = JSON.stringify(arr);
+        alert("成功");
+    })
+</script>
+</html>
